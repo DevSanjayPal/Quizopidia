@@ -1,4 +1,4 @@
-from operator import mod
+
 from django.db import models
 
 class registerform(models.Model):
@@ -9,7 +9,6 @@ class registerform(models.Model):
     Attendance=models.PositiveIntegerField(default=0,blank=True)
     cgpa=models.IntegerField("CGPA",default=0,blank=True)
     gpa=models.IntegerField("GPA",default=0,blank=True)
-    review=models.IntegerField(default=0,blank=True)
     score=models.PositiveIntegerField(default=0,blank=True,)
     def __str__(self):
         return self.name
@@ -59,7 +58,7 @@ class Answer(models.Model):
     score=models.BooleanField()
     
     def __str__(self):
-        return str(self.question)
+        return str(bool(self.score))
 
 class Record(models.Model):
     student=models.ForeignKey(registerform,on_delete=models.CASCADE,null=True,default="")

@@ -4,10 +4,232 @@
 <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'css/demo.css' %}">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css' %}">
+        <link href='https://fonts.googleapis.com/css?family=Adamina' rel='stylesheet'>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>   
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+            
+        <script>
+                $(document).ready( function () {
+                $('#myTable').DataTable();
+                } );
+        </script>
+    
 </head>
 <title>Dashboard</title>
 
 <body>
+
+     
+
+        <div class="layout has-sidebar fixed-sidebar fixed-header">
+                <aside id="sidebar" class="sidebar break-point-lg has-bg-image">
+                    <div class="image-wrapper">
+                        <img src="{% static 'images/adminbg.jpg' %}" alt="sidebar background" />
+                    </div>
+                    <div class="sidebar-layout">
+                        <div class="sidebar-header">
+                            <span style="
+                              text-transform: uppercase;
+                              font-size: 15px;
+                              letter-spacing: 3px;
+                              font-weight: bold;
+                            ">Admin Dashboard</span>
+                        </div>
+
+                        <div class="sidebar-content">
+                            <nav class="menu open-current-submenu">
+                                <ul>
+                                    
+                                        
+                                    <li class="menu-item">
+                                        <a href="{% url 'adprofile' %}">
+                                            <span class="menu-icon">
+                                                <i class="ri-user-fill"></i></span>
+                                            <span class="menu-title">Profile</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="menu-item">
+                                        <a href="{% url 'index1' %}">
+                                            <span class="menu-icon">
+                                                <i class="ri-dashboard-fill"></i></span>
+                                            <span class="menu-title">Dashboard</span>
+                                        </a>
+                                    </li>
+        
+                                    <li class="menu-item">
+                                        <a href="{% url 'correct_answer' %}">
+                                            <span class="menu-icon">
+                                                <i class="ri-eye-fill"></i></span>
+                                            <span class="menu-title">View
+                                                Answer Report</span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="menu-item">
+                                        <a href="{% url 'category_wisereport' %}">
+                                            <span class="menu-icon">
+                                                <i class="ri-newspaper-fill"></i></span>
+                                            <span class="menu-title">Category
+                                                Wise Report</span>
+                                        </a>
+                                    </li>
+        
+        
+                                    <li class="menu-item">
+                                        <a href="{% url 'addstudent' %}">
+                                            <span class="menu-icon">
+                                                <i class="ri-add-circle-fill"></i></span>
+                                            <span class="menu-title">Add Student</span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="menu-item">
+                                        <a href="{% url 'addoption' %}">
+                                            <span class="menu-icon">
+                                                <i class="ri-add-circle-fill"></i></span>
+                                            <span class="menu-title">Add Option</span>
+                                        </a>
+                                    </li>
+                                   
+                                    <li class="menu-item">
+                                        <a href="{% url 'quistion1' %}">
+                                            <span class="menu-icon">
+                                                <i class="ri-add-circle-fill"></i></span>
+                                            <span class="menu-title">Question Add</span>
+                                        </a>
+                                    </li>
+        
+        
+                                    <li class="menu-item">
+                                        <a href="{% url 'viewoption' %}">
+                                            <span class="menu-icon">
+                                                <i class="ri-eye-fill"></i></span>
+                                            <span class="menu-title">View
+                                                Options</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="menu-item">
+                                        <a href="{% url 'viewquestion' %}">
+                                            <span class="menu-icon">
+                                                <i class="ri-eye-fill"></i></span>
+                                            <span class="menu-title">View Question</span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="menu-item">
+                                        <a href="{% url 'viewcategory' %}">
+                                            <span class="menu-icon">
+                                                <i class="ri-eye-fill"></i></span>
+                                            <span class="menu-title">View Category </span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="menu-item">
+                                        <a href="{% url 'view_query' %}">
+                                            <span class="menu-icon">
+                                                <i class="ri-questionnaire-fill"></i></span>
+                                            <span class="menu-title">Student Query </span>
+                                        </a>
+                                    </li>
+        
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="sidebar-footer">
+                            <a href="{% url 'student_logout_view' %}" class="menu">
+                                <span class="menu-icon"><i class="ri-logout-box-line"></i></span>
+                                <span class="menu-title">Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+                <div id="overlay" class="overlay"></div>
+                <div class="layout">
+                    <header class="header">
+                        <a id="btn-collapse" style="color:#f3008a;" href="#">
+                            <i class="ri-menu-line ri-xl"></i>
+                        </a>
+                        <a id="btn-toggle" style="color:#f3008a;" href="#" class="sidebar-toggler break-point-lg">
+                            <i class="ri-menu-line ri-xl"></i>
+                        </a>
+                        <a href="" style="color:#f3008a;" class="logo">
+                            <img src="{% static 'images/logo.png' %}" width="250px" alt="">
+                        </a>
+                    </header>
+        <main class="content">
+                        {% block content %} 
+                        {% endblock%}
+                        
+                        
+        
+        
+        </main>
+        <div class="overlay"></div>
+        </div>
+        </div>
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+        </script>
+        
+        <script>
+        var xValues = ["Correct", "Wrong"];
+        var yValues = [50, 50];
+        var barColors = ["red", "green"];
+        
+        var myChart = new Chart("myChart", {
+        type: "bar",
+        data: {
+        labels: xValues,
+        datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+        }]
+        },
+        options: {
+        animations: {
+            tension: {
+                duration: 1000,
+                easing: 'linear',
+                from: 1,
+                to: 0,
+                loop: true
+            }
+        },
+        legend: {
+            display: false
+        },
+        title: {
+            display: true,
+            text: "Test Result"
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }]
+        }
+        }
+        });
+        </script>
+<!-- -------------------------------------------------------
+        <div class="container-fluid">
+
+        
         <div class="main">
 
                 <div class="menu">
@@ -28,27 +250,34 @@
                                 <a class="button button1" href={% url 'index1' %}><img
                                                 src="{% static 'icon/dashbord.png' %}" height="20px" width="20px">
                                         &nbspDashboard</span></a>
+                                ------------------------------------------------------------------------- -->
                                 <!-- <a class="button button1"  href={% url 'studentreport1' %} ><img src="{% static 'icon/report.png' %}" height="20px" width="20px"> &nbspStudent Report</span></a> -->
-                                <a class="button button1" href={% url 'correct_answer' %}><img
-                                                src="{% static 'icon/view.png' %}" height="20px" width="20px"> &nbspView
+                                <!-- ------------------------------------------
+                                         <a class="button button1" href={% url 'correct_answer' %}><img
+                                                src="{% static 'icon/view.png' %}" height="20px" width="20px"> &nbsp View
                                         Answer Report</span></a>
 
                                 <a class="button button1" href={% url 'category_wisereport' %}><img
-                                                src="{% static 'icon/view.png' %}" height="20px" width="20px"> &nbspCategory
+                                                src="{% static 'icon/view.png' %}" height="20px" width="20px"> &nbsp Category
                                         Wise Report</span></a>
                                         
                                         
                                 <a class="button button1" href={% url 'addstudent' %}><img
                                                 src="{% static 'icon/create.png' %}" height="20px" width="20px">
-                                        &nbspAdd Student</span></a>
+                                        &nbsp Add Student</span></a>
                                 <a class="button button1" href={% url 'addoption' %}><img
                                                 src="{% static 'icon/create.png' %}" height="20px" width="20px"> Add
                                         Option</span></a>
-                                <!-- <a class="button button1"  href={% url 'create1' %} ><img src="{% static 'icon/create.png' %}" height="20px" width="20px"> &nbspCreate Test</span></a> -->
+                             ----------------------------------------------- -->
+                             
+                                        <!-- <a class="button button1"  href={% url 'create1' %} ><img src="{% static 'icon/create.png' %}" height="20px" width="20px"> &nbspCreate Test</span></a> -->
                                 <!-- <a class="button button1" href={% url 'addcategory' %}><img src="{% static 'icon/view.png' %}"
                         height="20px" width="20px">Add Test category</span></a> -->
-                                <a class="button button1 " href={% url 'quistion1' %}><img
-                                                src="{% static 'icon/create.png' %}" height="20px" width="20px">
+                                
+                        
+                        <!-- ------------------------------------
+                                 <a class="button button1 " href={% url 'quistion1' %}>
+                                        <img src="{% static 'icon/create.png' %}" height="20px" width="20px">
                                         Question Add</span></a>
                                 <a class="button button1" href={% url 'viewoption' %}><img
                                                 src="{% static 'icon/view.png' %}" height="20px" width="20px">View
@@ -59,8 +288,15 @@
                                 <a class="button button1" href={% url 'viewcategory' %}><img
                                                 src="{% static 'icon/view.png' %}" height="20px" width="20px">view
                                         category </span></a>
+                                        --------------------------------------------------------------- -->
+
+
+
                                 <!-- <a class="button button1"  href={% url 'viewtest' %} ><img src="{% static 'icon/view.png' %}" height="20px" width="20px"> &nbspView Test</span></a> -->
-                                <a class="button button1" href={% url 'view_query' %}><img
+                                
+                                
+                                <!-- ----------------------------------------------------------
+                                        <a class="button button1" href={% url 'view_query' %}><img
                                                 src="{% static 'icon/view.png' %}" height="20px" width="20px">Student
                                         Query</span></a>
 
@@ -68,17 +304,24 @@
                                 <a class="button button1" href={% url 'admlogout' %}><img
                                                 src="{% static 'icon/logout.png' %}" height="20px"
                                                 width="20px">Logout</span></a>
+                                                --------------------- ----------- -->
+
+
 
                                 <!-- <span class="account"></span> -->
-                        </div>
+
+
+
+ <!-- --------------------------
+</div>
 
                 </div>
-
-                {% block content %}
-                {% endblock %}
-
-
         </div>
+</div>
+--------------------- -->
+
+
+
 </body>
 
 </html>

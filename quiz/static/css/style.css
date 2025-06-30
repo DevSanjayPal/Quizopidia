@@ -719,10 +719,10 @@ input {
 
 .content-table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
-}
+}#f3008a;
 
 .content-table tbody tr:last-of-type {
-    border-bottom: 2px solid #f3008a;
+    border-bottom: 2px solid 
 }
 
 .status-active {

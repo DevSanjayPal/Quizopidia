@@ -2,7 +2,43 @@
     {% load static %}
     {% block content %}
 
-    <div class="stdreportdrd">
+
+
+    <div class="dashboard">
+        <div class="card" style="margin-top:100px; padding:0px 10px 0px 10px ;">
+            <div class="baner" style="margin: auto; margin-top:-4%; margin-bottom:20px;">
+                <h3 class="text-center" style="font-weight: bold; padding: 10px 0px 10px 0px;"> Questions</h3>
+            </div>
+            <table class="table table-hover table-striped" id="myTable">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Question</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in al %}
+                    <tr>
+                        <td>{{i.categoryName}}</td>
+                        <td>{{i.question}}</td>
+                        <td style=" width:100px;">
+                            
+                            <a href="{% url 'editquestions' i.id %}"><img src="{% static 'icon/edit.png' %}" height="30px"
+                                    width="30px"></a>
+
+                            <a href="{% url 'delquestion' i.id %}"><img src="{% static 'icon/delete.png' %}" height="30px"
+                                width="30px"></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- <div class="stdreportdrd">
         <div class="card table questiontbl">
             <div class="card question">
                 <h3 style="font-weight: bold;">&nbsp &nbsp &nbsp Questions</h3>
@@ -36,6 +72,6 @@
 
         </div>
 
-    </div>
+    </div> -->
 
     {% endblock %}

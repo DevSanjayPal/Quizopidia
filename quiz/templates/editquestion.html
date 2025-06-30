@@ -2,7 +2,46 @@
 {% load static %}
 {% block content %}
 
-<div class="viewtabledrd">
+
+<div class="dashboard" >
+    <div class="card" style="margin-top:100px; padding:0px 10px 0px 10px ;">
+        <div class="baner" style="margin: auto; margin-top:-4%; margin-bottom:20px;">
+            <h3 class="text-center" style="font-weight: bold; padding: 10px 0px 10px 0px;"> Question Add</h3>
+        </div>
+        <form method="post" class="col-8 mt-5" style="margin:auto;">
+            {% csrf_token%}
+            <div class="form-group">
+                
+                <label>Select Category</label>
+
+                <select class="form-control" name="category" required >
+                    {% for i in al %}
+                    {% if i.name == name1 %}
+                            <option selected>{{i}}</option>
+                        {% else %}
+                            <option>{{i}}</option>
+                        {% endif %}
+
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Write Question</label>
+                    <input type="text" value="{{obj.question}}" placeholder="Enter Question" class="form-control" name="question" />
+
+            </div>
+
+            <br>
+            <input type="submit" class="btn btn-block" value="submit"  />
+
+        </form>
+        </br> 
+    </div>
+</div>
+
+
+
+<!-- <div class="viewtabledrd">
     <div class="viewtabledrd">
         <div class="card createtest">
             <div class="card questionadd">
@@ -16,11 +55,11 @@
 
                     <select required name="category">
                         {% for i in al %}
-                        {% ifequal i name1 %}
-                        <option selected>{{i}}</option>
-                        {% else %}
-                        <option>{{i}}</option>
-                        {% endifequal %}
+                        {% if i.name == name1 %}
+                                <option selected>{{i}}</option>
+                            {% else %}
+                                <option>{{i}}</option>
+                            {% endif %}
 
                         {% endfor %}
                     </select>
@@ -38,6 +77,6 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
 
     {% endblock %}

@@ -1,7 +1,50 @@
 {% extends 'admin_base.html' %}
 {% load static %}
 {% block content %}
-<div class="viewtabledrd">
+
+
+<div class="dashboard">
+    <div class="card" style="margin-top:100px; padding:0px 10px 0px 10px ;">
+        <div class="baner" style="margin: auto; margin-top:-4%; margin-bottom:20px;">
+            <h3 class="text-center" style="font-weight: bold; padding: 10px 0px 10px 0px;"> Category Wise Student Report</h3>
+        </div>
+        <form method="post" class="col-8 mt-5" style="margin:auto;">
+            {% csrf_token%}
+            <div class="form-group">
+                <label>Select Question</label>
+                <select class="form-control" required name="quest">
+                    {% for i in question %}
+                    <option value="{{i.id}}">
+                        {{i}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Add Option</label>
+                <input type="text" placeholder="Enter option" class="form-control" name="op"
+                    required>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="isans" value="True">
+                <label class="form-check-label">Is Answer</label>
+            </div>
+
+            <br>
+            <input type="submit" class="btn btn-block" value="submit"  />
+
+        </form>
+        <br>
+    </div>
+</div>
+
+{% if msg %}
+<script>
+    alert('{{msg}}')
+</script>
+{% endif %}
+
+<!-- <div class="viewtabledrd">
     <div class="viewtabledrd">
         <div class="card createtest">
             <div class="card questionadd">
@@ -39,6 +82,6 @@
     <script>
         alert('{{msg}}')
     </script>
-    {% endif %}
+    {% endif %} -->
     
     {% endblock %}

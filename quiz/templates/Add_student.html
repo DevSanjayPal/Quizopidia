@@ -3,7 +3,59 @@
 {% block content %}
 
 
-            <div class="viewtabledrd">
+<div class="dashboard">
+    <div class="card" style="margin-top:100px; padding:0px 10px 0px 10px ;">
+        <div class="baner" style="margin: auto; margin-top:-4%; margin-bottom:20px;">
+            <h3 class="text-center" style="font-weight: bold; padding: 10px 10px 10px 10px;"> Add Student</h3>
+        </div>
+        <form method="post" class="col-8 mt-5" style="margin:auto;">
+            {% csrf_token%}
+
+            <div class="form-group">
+                <label>Enter name</label>
+                <!-- <input type="text" placeholder="Enter name" class="form-control" name="name"
+                value="{{n.name}}" required> -->
+                <input type="text" placeholder="Enter Name" class="form-control" name="name"required>
+            </div>
+            <div class="form-group">
+                <label>Enter email</label>
+                <input type="email" placeholder="Enter Email" class="form-control" required name="email" />
+            </div>
+            <div class="form-group">
+                <label>Enter Password</label>
+                <input type="password" placeholder="Enter password" class="form-control" required name="password" />
+            </div>
+            <div class="form-group">
+                <label>Enter Enrollment Number</label>
+                    <input type="text" placeholder="Enter Enrollment Number" class="form-control" required name="enrollment" />
+            </div>
+            
+            <div class="form-group">
+                <label>Enter Attendance</label>
+                <input type="number"   max="12" min="0" placeholder="Enter Attendance" class="form-control" name="attendence" />
+            </div>
+            <div class="form-group">
+                <label>Enter CGPPA</label>
+                <input type="number" max="7" min="0" placeholder="Enter CGPPA" class="form-control" name="cgpa" />
+            </div>
+
+            <br>
+            <input type="submit" class="btn btn-block" value="submit"  />
+
+        </form>
+        </br>
+    </div>
+</div>
+
+{% if s %}
+<script>
+    alert('{{s}}')
+</script>
+{% else %}
+{% endif %}
+
+
+            <!-- <div class="viewtabledrd">
                 <div class="viewtabledrd">
 
                 <div class="card createtest">
@@ -29,14 +81,6 @@
                             <label>Enter CGPA</label>
                             <input type="number" max="7" min="0" placeholder="Enter CGPPA" class="totalquestion" id="totalquestion" name="cgpa" />
                             
-                            <label>Enter Rating</label>
-                            <input type="number" max="10" min="0" placeholder="Enter review" class="totalquestion" id="totalquestion" name="review" />
-
-                            <!-- <label>Enter Score</label>
-                            <input type="number" placeholder="Enter Score" class="totalquestion" id="totalquestion" name="score" /> -->
-
-
-                            <!-- <input type="password" placeholder="Enter Password" class="totalquestion" id="totalquestion" name="password" /><br><br> -->
                             <input type="submit" value="Add Student" />
                         </form>
 
@@ -50,5 +94,5 @@
             alert('{{s}}')
         </script>
         {% else %}
-        {% endif %}
+        {% endif %} -->
     {% endblock %}

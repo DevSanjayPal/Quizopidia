@@ -3,7 +3,40 @@
 {% block content %}
 
 
-            <div class="viewtabledrd">
+<div class="dashboard">
+    <!-- style="margin-left:20%"  -->
+    <div class="card" style="margin-top:100px; padding:0px 10px 0px 10px ;">
+        <div class="baner" style="margin: auto; margin-top:-4%; margin-bottom:20px;">
+            <h3 class="text-center" style="font-weight: bold; padding: 10px 0px 10px 0px;"> View Test category</h3>
+        </div>
+        <a class="text-right" href={% url 'add_category' %}> <button class="btn btn-outline-warning"> <img
+            src="{% static 'icon/create.png' %}" height="30px" >Add category</button></a>
+        
+        <br>
+        <table class="table table-hover table-striped" id="myTable">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in obj %}
+                <tr>
+                    <td>{{i}}</td>
+                    <td>
+                        <a href="{% url 'editcategory' i.id %}"><img src="{% static 'icon/edit.png' %}" height="30px" width="30px"></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+            <!-- <div class="viewtabledrd">
                 <div style="width:200px;">
                     <a class="button button1 " href={% url 'add_category' %}><img
                         src="{% static 'icon/create.png' %}" height="20px" width="20px">Add category</a>
@@ -24,12 +57,12 @@
                                 <a href="{% url 'editcategory' i.id %}"><img src="{% static 'icon/edit.png' %}" height="30px" width="30px"></a>
                             </td>
                                 
-                            <!-- <td><a href="{% url 'editcategory' i.id %}">edit</a></td> -->
-                            <!-- <td><a href="{% url 'delcategory' i.id %}">Delete</a></td> -->
+                            <td><a href="{% url 'editcategory' i.id %}">edit</a></td>
+                            <td><a href="{% url 'delcategory' i.id %}">Delete</a></td>
                         </tr>
                         {% endfor %}
                         
                     </table>
             </div>
-            </div>
+            </div> -->
 {% endblock %}

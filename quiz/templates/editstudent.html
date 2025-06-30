@@ -2,7 +2,56 @@
 {% load static %}
 {% block content %}
 
-<div class="viewtabledrd">
+
+
+<div class="dashboard">
+    <div class="card" style="margin-top:100px; padding:0px 10px 0px 10px ;">
+        <div class="baner" style="margin: auto; margin-top:-4%; margin-bottom:20px;">
+            <h3 class="text-center" style="font-weight: bold; padding: 10px 0px 10px 0px;"> Question Add</h3>
+        </div>
+        <form method="post" class="col-8 mt-5" style="margin:auto;">
+            {% csrf_token%}
+            <div class="form-group">
+                <label>Student Name</label>
+                <input type="text" value="{{obj.name}}" placeholder="Enter name" class="form-control" name="name" />
+            </div>
+            <div class="form-group">
+                <label>Student Email</label>
+                <input type="email" value="{{obj.email}}" placeholder="Enter email" class="form-control" name="email" required />
+            </div>
+            <div class="form-group">
+                <label>Student Enrollment</label>
+                    <input type="number" value="{{obj.Enrollment_No}}" placeholder="Enter Enrollment number" class="form-control" name="en.no" />
+            </div>
+            <div class="form-group">
+                <label>Student Password</label>
+                    <input type="password" value="{{obj.password}}" placeholder="Enter password" class="form-control" name="password" />
+            </div>
+            <div class="form-group">
+                <label>Student Attendance</label>
+                    <input type="number" max="12" min="0" value="{{obj.Attendance}}" placeholder="Enter Attendance" class="form-control" name="attendance" />
+            </div>
+            <div class="form-group">
+                <label>Student CGPA</label>
+                <input type="Number" max="7" min="0" value="{{obj.cgpa}}" placeholder="Enter CGPA" class="form-control" name="cgpa" />
+
+            </div>
+            <div class="form-group">
+                <label>Student Score</label>
+                    <input type="number" value="{{obj.score}}" placeholder="Enter score" class="form-control" name="score" />
+
+            </div>
+           
+            <br>
+            <input type="submit" class="btn btn-block" value="submit"  />
+
+        </form>
+        <br>
+    </div>
+</div>
+
+
+<!-- <div class="viewtabledrd">
     <div class="viewtabledrd">
         <div class="card createtest">
             <div class="card questionadd">
@@ -32,9 +81,7 @@
                     <input type="Number" max="7" min="0" value="{{obj.cgpa}}" placeholder="Enter CGPA"
                         style="width: 500px; height: 30px;" class="questiontitle" id="questiontitle" name="cgpa" />
 
-                    <label>Student Review</label>
-                    <input type="number" max="10" min="0" value="{{obj.review}}" placeholder="Enter review"
-                        style="width: 500px; height: 30px;" class="questiontitle" id="questiontitle" name="review" />
+
                     <label>Student Score</label>
                     <input type="number" value="{{obj.score}}" placeholder="Enter score" required
                         style="width: 500px; height: 30px;" class="questiontitle" id="questiontitle" name="score" />
@@ -49,6 +96,6 @@
             </div>
 
         </div>
-    </div>
+    </div> -->
 
     {% endblock %}

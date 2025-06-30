@@ -1,12 +1,8 @@
-import email
-from unicodedata import category
-from click import option
+
 from django.shortcuts import render,redirect
 from .models import Answer,StudentReport ,registerform,question,Testappear,Record,AdminForm,Testcategory,Option, contactForm
-from django.http import HttpResponse
 import plotly.graph_objects as go
-from io import BytesIO
-import plotly.express as px
+
 
 
 # Create your views here.
@@ -170,7 +166,7 @@ def edit_student(request,id):
             password=request.POST['password']
             attend=request.POST['attendance']
             cgpa=request.POST['cgpa']
-            rev=request.POST['review']
+            
 
             obj.name=name
             obj.email=email
@@ -178,7 +174,7 @@ def edit_student(request,id):
             obj.password=password
             obj.Attendance=attend
             obj.cgpa=cgpa
-            obj.review=rev
+            
             obj.save()
             
             return redirect('index1')
@@ -280,7 +276,6 @@ def Add_student(request):
             model.password=request.POST['password']
             model.Attendance=request.POST['attendence']
             model.cgpa=request.POST['cgpa']
-            model.review=request.POST['review']
             model.save()
             newly=registerform.objects.last()
             allcat=Testcategory.objects.all()
@@ -384,17 +379,15 @@ def stu_result(request):
         labels = []
         all_per = []
         for i in stu_data:
-            all_per.append((float(i.percentage)) * 1.5)      
+            all_per.append((float(i.percentage)) *1.0)      
             labels.append(i.cat_name.name)
         labels.append('Attendance')
         labels.append('CGPA')
         labels.append('Rating')        
-        final_cgpa = (float(int(show_data.cgpa)) * 100 / 7) * 0.50
-        final_att = (float(show_data.Attendance) * 100 / 12) * 0.25
-        final_rating = (float(show_data.review) * 100 / 10) * 0.75
+        final_cgpa = (float(int(show_data.cgpa)) * 100 / 7) * 1.0
+        final_att = (float(show_data.Attendance) * 100 / 12) * 1.0
         all_per.append(final_att)
-        all_per.append(final_cgpa)
-        all_per.append(final_rating)        
+        all_per.append(final_cgpa)       
         final_percentage = round((sum(all_per) / len(all_per)), 2)
         show_data.score=final_percentage
         show_data.save()        
@@ -417,10 +410,10 @@ def stu_question(request, id):
     if 'enroll_no' in request.session:     
         t=Testcategory.objects.get(id=id)
         ow=registerform.objects.get(Enrollment_No=request.session['enroll_no'])
-        try:
-            check=Testappear.objects.get(t_user=ow,t_category=t,isappear=True)
-            return redirect('stu_allcat')
-        except:
+        alreadyData = Testappear.objects.all().filter(t_user=ow) & Testappear.objects.all().filter(t_category=t) & Testappear.objects.all().filter(isappear=True)
+        if len(alreadyData)>0:
+            return redirect('stu_result')
+        else:
             final_dict={}
             obj=question.objects.filter(categoryName_id=id)
             for i in obj:
@@ -435,16 +428,25 @@ def stu_question(request, id):
                     c2=Option.objects.filter(question=c1,is_answer=True)
                     for j in c2:
                         main_list.append(j.option_title)
-                    print(main_list)    
+                    print(main_list) 
                     if ans in main_list:
                         Answer.objects.create(owner=ow,quiz1=t,question=c1,score=True)
-                change=Testappear.objects.get(t_user=ow,t_category=t)
-                print('inside except')
-                change.isappear=True
-                change.save()
-                return redirect('stucalu',id)
-        total_size = len(final_dict)
-        return render(request, 'stu_question.html',{'final':final_dict, 'total_size':total_size})
+                #change=Testappear.objects.get(t_user=ow,t_category=t)
+                change = Testappear.objects.all().filter(t_user=ow) & Testappear.objects.all().filter(t_category=t)
+                if(len(change)>0):
+                    print('inside except')
+                    change[0].isappear=True
+                    change[0].save()
+                    return redirect('stucalu',id)
+                else:
+                    appear = Testappear()
+                    appear.t_category = t
+                    appear.t_user=ow
+                    appear.isappear=True
+                    appear.save()
+                    return redirect('stucalu',id)
+            total_size = len(final_dict)
+            return render(request, 'stu_question.html',{'final':final_dict, 'total_size':total_size})
     return redirect('student_login_view')
 
 def stu_profile(request):
@@ -495,11 +497,13 @@ def stu_category_calculation(request,id):
     if 'enroll_no' in request.session:
         u=registerform.objects.get(Enrollment_No = request.session['enroll_no'])
         c=Testcategory.objects.get(id=id)
-        s=Answer.objects.filter(quiz1=c)
+        s=Answer.objects.filter(quiz1=c) & Answer.objects.filter(owner=u) 
         q=question.objects.filter(categoryName=c) 
         ans=len(s)
-        total_quest=len(q)
-        final=(ans*100)/total_quest
+        total_quest=int(len(q))
+        final=(((ans*100)/total_quest))
+        print(total_quest)
+        print(final)
         StudentReport.objects.create(stu_name=u,cat_name=c,percentage=final)
         return redirect('stu_catWiseResult')    
     return redirect('student_login_view')

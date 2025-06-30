@@ -3,6 +3,36 @@
 {% block content %}
 
 
+
+<div class="dashboard">
+    <div class="card" style="margin-top:100px; padding:0px 10px 0px 10px ;">
+        <div class="baner" style="margin: auto; margin-top:-4%; margin-bottom:20px;">
+            <h3 class="text-center" style="font-weight: bold; padding: 10px 0px 10px 0px;"> Student Query</h3>
+        </div>
+        <table class="table table-hover table-striped" id="myTable">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Student Email</th>
+                    <th>Student Phone</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in c_form %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.email}}</td>
+                    <td>{{i.phone}}</td>
+                    <td>{{i.message}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- 
 <div class="stdreportdrd">
     <div class="dashboard">
         <div class="card table stdtbl">
@@ -26,6 +56,6 @@
                 {% endfor %}
             </table>
         </div>
-    </div>
+    </div> -->
 
     {% endblock %}

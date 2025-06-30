@@ -2,12 +2,91 @@
 {% load static %}
 {% block content %}
 
-<h1 class="cust_name">
+
+
+<h1 class="text-center mb-2" style="font-family: 'Adamina';font-size: 40px; color:rgba(255, 165, 0, 1); ">
     Welcome {{ n.name}}
 </h1>
 <div class="dashboard">
+    
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="row m-5">
+                        <div class="col-md-8">
+                            <img src="{% static 'icon/test.png' %}" class="fafa" height="50px" width="50px"><br>
+                            <span class="text-muted">Total Student</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="ts" style="font-weight: 900; font-size: 25px;">{{ c }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="row m-5">
+                        <div class="col-md-8">
+                            <img src="{% static 'icon/totaltest.png' %}" class="fafa" height="50px" width="50px"><br>
+                            <span class="text-muted">Total Questions</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="tt" style="font-weight: 900; font-size: 25px;">{{q}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-4">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img src="{% static 'icon/testgiven.png' %}" class="fafa m-2" height="50px" width="50px">
+                            <span class="text-muted">Test Given</span>
+                        </div>
+                        <div class="col-md-4">
+                            <span class="tg" style="font-weight: 900; font-size: 25px;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    <div class="card" style="margin-top:100px; padding:0px 10px 0px 10px ;">
+        <div class="baner" style="margin: auto; margin-top:-4%; margin-bottom:20px;">
+            <h3 class="text-center" style="font-weight: bold; padding: 10px 0px 10px 0px;"> Student Records Report</h3>
+        </div>
+        <table class="table table-hover table-striped" id="myTable">
+            <thead>
+                <tr>
+                    <th>STUDENT NAME</th>
+                    <th>Attendance</th>
+                    <th>CGPA</th> 
+                    <th>Score</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.Attendance }}</td>
+                    <td>{{ i.cgpa }}</td>
+                    <td>{{ i.score }}</td>
+                    <td>
+                        <a href="{% url 'edit_student' i.id %}"><img src="{% static 'icon/edit.png' %}" height="30px"
+                                width="30px"></a>
+                        <a href="{% url 'delstudent' i.id %}"><img src="{% static 'icon/delete.png' %}" height="30px"
+                                    width="30px"></a> 
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+  
+{% endblock %}
 
-    <div class="crd3">
+    <!-- <div class="crd3">
         <div class="card show">
             <img src="{% static 'icon/test.png' %}" class="fafa" style="float:left;" height="50px" width="50px">
             <span class="label">Total Student</span></br>
@@ -18,53 +97,50 @@
             <span class="label">Total Questions</span></br>
             <span class="tt" style="font-weight: 900; font-size: 25px;">{{q}}</span>
         </div>
-        {% comment %} <div class="card show" id="showid">
+        <div class="card show" id="showid">
             <img src="{% static 'icon/testgiven.png' %}" class="fafa" style="float:left;" height="50px" width="50px">
             <span class="label">Test Given</span></br>
             <span class="tg" style="font-weight: 900; font-size: 25px;">430</span>
-        </div> {% endcomment %}
-    </div>
-    <div class="card table">
+        </div>
+    </div> -->
+    <!-- <div class="card table">
 
         <div class="card questionadd">
             <h3 class="questionaddtitle" style="font-weight: bold;">&nbsp &nbsp &nbsp Student Records Report</h3>
         </div>
 
-        <table>
-
-            <tr>
-                <th>STUDENT NAME</th>
-                <th>Attendance</th>
-                <th>CGPA</th>
-
-                <th>Rating</th>
-                <th>Score</th>
-                <th>Action</th>
-            </tr>
-            {% for i in data %}
-            <tr>
-                <td>{{ i.name }}</td>
-                <td>{{ i.Attendance }}</td>
-                <td>{{ i.cgpa }}</td>
-
-                <td>{{ i.review }}</td>
-                <td>{{ i.score }}</td>
-                <td>
-                    <a href="{% url 'edit_student' i.id %}"><img src="{% static 'icon/edit.png' %}" height="30px"
-                            width="30px"></a>
-                    <a href="{% url 'delstudent' i.id %}"><img src="{% static 'icon/delete.png' %}" height="30px"
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <th>STUDENT NAME</th>
+                    <th>Attendance</th>
+                    <th>CGPA</th> 
+                    <th>Score</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.Attendance }}</td>
+                    <td>{{ i.cgpa }}</td>
+                    <td>{{ i.score }}</td>
+                    <td>
+                        <a href="{% url 'edit_student' i.id %}"><img src="{% static 'icon/edit.png' %}" height="30px"
                                 width="30px"></a>
-                    <!-- <a href="{% url 'delstudent' i.id %}" style="text-decoration: none;color: red;">Delete</a> -->
-                    <!-- <img src="{% static 'icon/download.png' %}" height="30px" width="30px" style="margin:2%;" onclick="window.location.href='index.html';" > &nbsp;
-                                <img src="{% static 'icon/email.png' %}" height="30px" width="30px" style="margin:2%;" onclick="window.location.href='index.html';" > -->
-                </td>
-            </tr>
-            {% endfor %}
+                        <a href="{% url 'delstudent' i.id %}"><img src="{% static 'icon/delete.png' %}" height="30px"
+                                    width="30px"></a> -->
+                        <!-- <a href="{% url 'delstudent' i.id %}" style="text-decoration: none;color: red;">Delete</a> -->
+                        <!-- <img src="{% static 'icon/download.png' %}" height="30px" width="30px" style="margin:2%;" onclick="window.location.href='index.html';" > &nbsp;
+                                    <img src="{% static 'icon/email.png' %}" height="30px" width="30px" style="margin:2%;" onclick="window.location.href='index.html';" > -->
+                    <!-- </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
 
     </div>
 
-</div>
+</div> -->
 
-
-{% endblock %}
